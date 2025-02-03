@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منيو | مطعم الذواقة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+
+        :root {
+            --main-color: #e67e22;
+            --secondary-color: #f06b0c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f9f9f9 0%, #fff9f2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        /* الهيدر الجديد مع اللوجو */
+        .header {
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+            padding: 30px 0;
+        }
+
+        .logo-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+            background: linear-gradient(45deg, var(--secondary-color), var(--main-color));
+            padding: 15px 40px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .restaurant-name {
+            color: white;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+        }
+
+        /* تصميم المنيو المحسّن */
+        .menu-category {
+            background: white;
+            border-radius: 25px;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 2px solid #eee;
+        }
+
+        .category-header {
+            background: var(--main-color);
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .category-icon {
+            font-size: 2.5em;
+            color: white;
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category-title {
+            color: white;
+            font-size: 2em;
+        }
+
+        .menu-items {
+            padding: 30px;
+        }
+
+        .menu-item {
+            display: grid;
+            grid-template-columns: 150px 1fr auto;
+            gap: 30px;
+            align-items: center;
+            padding: 25px;
+            margin-bottom: 25px;
+            background: #fff;
+            border-radius: 20px;
+            transition: all 0.3s;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--main-color);
+            box-shadow: 0 10px 25px rgba(230,126,34,0.15);
+        }
+
+        .item-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 3px solid var(--main-color);
+            transition: transform 0.3s;
+        }
+
+        .item-image:hover {
+            transform: rotate(2deg) scale(1.05);
+        }
+
+        .item-details {
+            padding-right: 20px;
+        }
+
+        .item-name {
+            color: var(--secondary-color);
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .item-name::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 50%;
+            height: 2px;
+            background: var(--main-color);
+        }
+
+        .item-description {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.1em;
+            margin-top: 15px;
+        }
+
+        .item-price {
+            background: linear-gradient(45deg, var(--main-color), #d35400);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-size: 1.5em;
+            font-weight: bold;
+            min-width: 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .item-price::before {
+            content: "ر.س";
+            font-size: 0.7em;
+            margin-left: 5px;
+            opacity: 0.8;
+        }
+
+        .item-price::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3));
+            transform: rotate(45deg);
+            animation: priceGlow 3s infinite;
+        }
+
+        @keyframes priceGlow {
+            0% { left: -50%; }
+            100% { left: 150%; }
+        }
+
+        /* زر التحميل المطور */
+        .pdf-download {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            background: var(--secondary-color);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            z-index: 100;
+        }
+
+        .pdf-download:hover {
+            transform: scale(1.05);
+            background: var(--main-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .menu-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .item-image {
+                width: 100%;
+                height: 250px;
+            }
+
+            .item-price {
+                margin: 0 auto;
+            }
+
+            .item-name::after {
+                width: 100%;
+            }
+
+            .pdf-download {
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-container">
+                <img src="image/مطعم الذواقة (1).png" class="logo" alt="شعار المطعم">
+                <h1 class="restaurant-name">مطعم الذواقة</h1>
+            </div>
+        </header>
+
+        <!-- قسم المقبلات -->
+        <div class="menu-category">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+                <h2 class="category-title">المقبلات الشهية</h2>
+            </div>
+            
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="image/salad.jpg" class="item-image" alt="سلطة البحر المتوسط">
+                    <div class="item-details">
+                        <h3 class="item-name">سلطة البحر المتوسط</h3>
+                        <p class="item-description">
+                            مزيج من الخضار الطازجة، الزيتون، الجبنة الفيتا، 
+                            طماطم مشوية، وصلصة الليمون الخاصة
+                        </p>
+                    </div>
+                    <div class="item-price">35</div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="image/soupmashrum.jpg" class="item-image" alt="شوربة الفطر">
+                    <div class="item-details">
+                        <h3 class="item-name">شوربة الفطر الكريمية</h3>
+                        <p class="item-description">
+                            شوربة فطر طازج مع كريمة طبخ وكريمة فريش، 
+                            تقدم مع خبز التوست المقرمش
+                        </p>
+                    </div>
+                    <div class="item-price">28</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم الأطباق الرئيسية -->
+        <div class="menu-category">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fa-solid fa-drumstick-bite"></i>
+                </div>
+                <h2 class="category-title">الأطباق الرئيسية</h2>
+            </div>
+            
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="image/pexels-anthony-rahayel-125801377-30350296.jpg" class="item-image" alt="ستيك اللحم">
+                    <div class="item-details">
+                        <h3 class="item-name">ستيك لحم أنجوس</h3>
+                        <p class="item-description">
+                            قطعة لحم أنجوس 300 جرام مشوية مع صلصة الفطر الأسود، 
+                            تقدم مع البطاطس المشوية والخضار
+                        </p>
+                    </div>
+                    <div class="item-price">120</div>
+                </div>
+            </div>
+        </div>
+
+        <a href="#" class="pdf-download">
+            <i class="fa-solid fa-file-pdf"></i>
+            تحميل القائمة كملف PDF
+        </a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        document.querySelector('.pdf-download').addEventListener('click', (e) => {
+            e.preventDefault();
+            const element = document.querySelector('.container');
+            html2pdf()
+                .set({
+                    margin: [15, 15],
+                    filename: 'menu.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                })
+                .from(element)
+                .save();
+        });
+    </script>
+</body>
+</html>
